@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Shivam Rajyaguru",
+    "username": "@shiva_guru",
+    "email": "shiva_1625@gmail.com",
+    "birthdate": "2002-10-16",
+    "address": "PNB Bank ni pachal",
+    "country": "India",
+    "totalsubmission": 102,
+    "lastsubmission": "2023-1-20"
+  },
+  {
+    "name": "Vivek Bhardwaj",
+    "username": "@vivek_bhardwaj",
+    "email": "bvivek@gmail.com",
+    "birthdate": "2001-08-12",
+    "address": "402 , near bhagwati circle",
+    "country": "India",
+    "totalsubmission": 72,
+    "lastsubmission": "2022-10-7"
+  },
+  {
+    "name": "Nitesh Tiwari",
+    "username": "@n_tiwari",
+    "email": "nitesht_784@gmail.com",
+    "birthdate": "2002-10-16",
+    "address": "602 , Shivshakti apartment",
+    "country": "India",
+    "totalsubmission": 96,
+    "lastsubmission": "2023-09-09"
+  },
+  {
+    "name": "John Doe",
+    "username": "@JohnDoe",
+    "email": "john_doe_777@gmail.com",
+    "birthdate": "2001-07-29",
+    "address": "102 , Near Frontline Tower , Zedius",
+    "country": "USA",
+    "totalsubmission": 147,
+    "lastsubmission": "2024-02-10"
+  },
+  {
+    "name": "Keller Williams",
+    "username": "@KellerWill",
+    "email": "keller_will@gmail.com",
+    "birthdate": "2003-06-12",
+    "address": "1004,Elegance floor",
+    "country": "USA",
+    "totalsubmission": 108,
+    "lastsubmission": "2024-1-31"
+  },
+  {
+    "name": "Ron weasely",
+    "username": "@ron_weas",
+    "email": "ron_weasely1@gmail.com",
+    "birthdate": "2002-03-14",
+    "address": "74, Near Broadly bad",
+    "country": "Canada",
+    "totalsubmission": 68,
+    "lastsubmission": "2023-12-28"
+  },
+  {
+    "name": "Aman Dutt",
+    "username": "@aman_dutt",
+    "email": "dutt_aman@gmail.com",
+    "birthdate": "2003-11-11",
+    "address": "109 , Omkareshwar residency",
+    "country": "India",
+    "totalsubmission": 59,
+    "lastsubmission": "2024-02-02"
+  },
+  {
+    "name": "Elvish Yadav",
+    "username": "@e_yadav",
+    "email": "elvish_yadav123@gmail.com",
+    "birthdate": "2002-04-12",
+    "address": "604 , Vishvaraj colony",
+    "country": "India",
+    "totalsubmission": 111,
+    "lastsubmission": "2024-2-14"
+  },
+  {
+    "name": "Abhishek Malhan",
+    "username": "@abhi_malhan",
+    "email": "abhishek_m777@gmail.com",
+    "birthdate": "2003-07-21",
+    "address": "408 , Shreeji colony ",
+    "country": "India",
+    "totalsubmission": 79,
+    "lastsubmission": "2023-12-23"
+  },
+  {
+    "name": "Mick Longbottem",
+    "username": "@mick_longbottem",
+    "email": "mickLGB@gmail.com",
+    "birthdate": "2001-09-08",
+    "address": "505 , Hogwater apartment",
+    "country": "Russia",
+    "totalsubmission": 147,
+    "lastsubmission": "2024-01-01"
+  }
+]
