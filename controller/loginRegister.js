@@ -2,7 +2,22 @@
 const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { use } = require("../routes/influenceRoute");
+const otpGenerator = require("otp-generator");
+
+const verifyUser = async (req, res, next) => {
+  try {
+    const { email } = req.method == "GET" ? req.query : req.body;
+
+    let exist = await User.findOne({ email });
+    if (!exist) {
+      return res.status(404).json({ error: "Can't find User!" });
+    }
+    next();
+    return;
+  } catch (error) {
+    return res.status(404).json({ error: "Authentication Error" });
+  }
+};
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -97,23 +112,79 @@ const register = async (req, res) => {
 /** get method **/
 
 const getUser = async (req, res) => {
-  res.send("getUser");
+  const { username } = req.params;
+  try {
+    if (!username) return res.status(500).json({ error: "Invalid username" });
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(501).json({ error: "Couldn't find the user" });
+    }
+
+    /*remove password from user*/
+    /* mongoose return unnecesary data so convert in to json**/
+
+    const { password, ...rest } = Object.assign({}, user.toJSON());
+    return res.status(200).json(rest);
+  } catch (error) {
+    res.status(404).json({ error: "Can not find user data" });
+  }
 };
 
 const generateOTP = async (req, res) => {
-  res.send("generateOTP");
+  req.app.locals.OTP = otpGenerator.generate(6, {
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+  return res.status(201).json({ code: req.app.locals.OTP });
 };
 
 const verifyOTP = async (req, res) => {
-  res.send("verifyOTP");
+  const { code } = req.query;
+  if (parseInt(req.app.locals.OTP) === parseInt(code)) {
+    req.app.locals.OTP = null;
+    req.app.locals.resetSession = true;
+    return res.status(201).json({ msg: "Verify successfully" });
+  }
+  return res.status(404).json({ error: "Invalid OTP" });
 };
 
 const createResetSession = async (req, res) => {
-  res.send("createResetSession");
+  if (req.app.locals.resetSession) {
+    req.app.locals.resetSession = false;
+    return res.status(201).json({ msg: "access granted" });
+  }
+  return res.status(404).json({ err: "Session expired" });
+};
+
+const updateUser = async (req, res) => {
+  // const id = req.query.id;
+  const { userId } = req.user;
+  try {
+    const body = req.body;
+    const updateUser = await User.updateOne({ _id: userId }, body);
+    return res.status(201).json({ msg: "Record updated" });
+  } catch (error) {
+    return res.status(404).json({ error });
+  }
 };
 
 const resetPassword = async (req, res) => {
-  res.send("resetPassword");
+  if (!req.app.locals.resetSession)
+    return res.status(404).json({ error: "Session expired" });
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    const hasedPasssword = await bcrypt.hash(password, 10);
+    const newUser = await User.updateOne(
+      { email: user.email },
+      { password: hasedPasssword }
+    );
+    req.app.locals.resetSession = false;
+    return res.status(201).json({ msg: "Record updated" });
+  } catch (error) {
+    return res.status(404).json({ error: error });
+  }
 };
 
 module.exports = {
@@ -124,4 +195,6 @@ module.exports = {
   verifyOTP,
   createResetSession,
   resetPassword,
+  verifyUser,
+  updateUser,
 };
