@@ -112,10 +112,10 @@ const register = async (req, res) => {
 /** get method **/
 
 const getUser = async (req, res) => {
-  const { username } = req.params;
+  const { email } = req.params;
   try {
-    if (!username) return res.status(500).json({ error: "Invalid username" });
-    const user = await User.findOne({ username });
+    if (!email) return res.status(500).json({ error: "Invalid username" });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(501).json({ error: "Couldn't find the user" });
     }
@@ -151,8 +151,9 @@ const verifyOTP = async (req, res) => {
 
 const createResetSession = async (req, res) => {
   if (req.app.locals.resetSession) {
-    req.app.locals.resetSession = false;
-    return res.status(201).json({ msg: "access granted" });
+    // req.app.locals.resetSession = false;
+    // return res.status(201).json({ msg: "access granted" });
+    return res.status(201).send({ flag: req.app.locals.resetSession });
   }
   return res.status(404).json({ err: "Session expired" });
 };

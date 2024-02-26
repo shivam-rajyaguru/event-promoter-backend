@@ -16,13 +16,13 @@ const registeredMail = require("../controller/mailer");
 
 /**Post method **/
 router.route("/login").post(verifyUser, login); //login user
-router.route("/authenticate").post(); //authenticate user
+router.route("/authenticate").post(verifyUser, (req, res) => res.end()); //authenticate user
 router.route("/registermail").post(registeredMail); //registerd mail
 router.route("/register").post(register); //register user
 
 /** Get method**/
 
-router.route("/username/:username").get(getUser); //get user
+router.route("/username/:email").get(getUser); //get user
 router.route("/generateOTP").get(verifyUser, localvariable, generateOTP); // generate random otp
 router.route("/verifyOTP").get(verifyOTP); // verify otp
 router.route("/createResetSession").get(createResetSession); // reset all the variable
