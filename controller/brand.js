@@ -3,6 +3,7 @@ const Brand = require("../model/brand");
 const addBrand = async (req, res) => {
   try {
     const { brandName, brandCategory, brandDescription } = req.body;
+
     const brand = new Brand({
       brandName,
       brandCategory,

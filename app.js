@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan("tiny"));
 
 app.use("/api/v1/influence", influeRoute);
-app.use("/api/v1/branad", brandRoute);
+app.use("/api/v1/brand", brandRoute);
 app.use("/api/v1", loginRegisterRoute);
 
 const start = async () => {

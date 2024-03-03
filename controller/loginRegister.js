@@ -43,6 +43,7 @@ const login = async (req, res) => {
               msg: "login succesfully",
               email: user.email,
               token,
+              userType: user.userType,
             });
           })
           .catch((error) => {
@@ -59,7 +60,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const { username, email, password, profile } = req.body;
+    const { username, email, password, profile, userType } = req.body;
     const existingUser = new Promise((resolve, reject) => {
       User.findOne({ username })
         .then(() => resolve())
@@ -84,6 +85,7 @@ const register = async (req, res) => {
                 password: hashedPassword,
                 profile: profile || "",
                 email,
+                userType,
               });
               user
                 .save()
