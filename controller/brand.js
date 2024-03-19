@@ -16,6 +16,8 @@ const addBrand = async (req, res) => {
       brandSocialFacebook,
       brnadSocialInsta,
       brandSocialTweet,
+      brandImage,
+      brandLogo,
     } = req.body;
 
     const brand = new Brand({
@@ -32,6 +34,8 @@ const addBrand = async (req, res) => {
       brandSocialFacebook,
       brnadSocialInsta,
       brandSocialTweet,
+      brandImage,
+      brandLogo,
     });
 
     const savedData = await brand.save();
